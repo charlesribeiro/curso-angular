@@ -11,4 +11,10 @@ export class ValidarCamposService {
   hasError(control: AbstractControl, errorName: string):boolean{
     return control.hasError(errorName);
   }
+
+  hasErrorValidar(control: AbstractControl, errorName: string){
+    if((control.dirty || control.touched) && this.hasError(control, errorName)){
+      return true;
+    }
+  }
 }
