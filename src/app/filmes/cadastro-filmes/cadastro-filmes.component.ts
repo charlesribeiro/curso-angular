@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidarCamposService } from '../../shared/components/campos/validar-campos.service';
 // import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
 
 @Component({
@@ -11,7 +12,11 @@ export class CadastroFilmesComponent implements OnInit {
 
   cadastro: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(public validacao: ValidarCamposService, private fb: FormBuilder) { }
+
+  get f(){
+    return this.cadastro.controls;
+  }
 
   ngOnInit() {
 
@@ -28,6 +33,7 @@ export class CadastroFilmesComponent implements OnInit {
 
   }
   salvar(): void {
+    this.cadastro.markAllAsTouched();
     console.log("foi", this.cadastro);
     if(this.cadastro.invalid){
       return;
