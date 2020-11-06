@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { ValidarCamposService } from '../validar-campos.service';
 
 @Component({
@@ -9,14 +9,13 @@ import { ValidarCamposService } from '../validar-campos.service';
 })
 export class InputTextareaComponent {
 
-
   @Input() titulo: string;
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
 
   constructor(public validacao: ValidarCamposService) { }
 
-  get formControl(): AbstractControl{
+  get formControl(): AbstractControl {
     return this.formGroup.controls[this.controlName];
   }
 
